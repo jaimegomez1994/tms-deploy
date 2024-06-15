@@ -3,10 +3,7 @@
     "builds": [
         {
             "src": "apps/abp/package.json",
-            "use": "@vercel/next",
-            "config": {
-                "buildCommand": "pnpm run build:packages && pnpm run build:app"
-            }
+            "use": "@vercel/next"
         }
     ],
     "routes": [
