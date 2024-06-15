@@ -23,7 +23,7 @@
                 "NEXT_PUBLIC_API_URL",
                 "NEXTAUTH_CLIENT_ID"
             ],
-            "outputs": ["dist/**", "apps/abp/.next/**"]
+            "outputs": ["dist/**", ".next/**"]
         },
         "lint": {},
         "check-types": {},
