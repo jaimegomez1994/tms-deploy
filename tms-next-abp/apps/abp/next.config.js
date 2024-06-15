@@ -2,7 +2,12 @@
 const path = require('path');
 module.exports = {
     reactStrictMode: true,
-    // transpilePackages: ['@tms_next_abp/ui', '@tms_next_abp/hooks', '@tms_next_abp/utils', '@tms_next_abp/proxy' ],
+    transpilePackages: [
+        '@tms_next_abp/ui',
+        '@tms_next_abp/hooks',
+        '@tms_next_abp/utils',
+        '@tms_next_abp/proxy'
+    ],
     output: 'standalone',
     experimental: {
         // this includes files from the monorepo base two directories up
