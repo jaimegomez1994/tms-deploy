@@ -55,7 +55,8 @@ jobs:
           pwd
           echo "ls"
           ls
-          cp -r /node_modules/.pnpm ./node_modules
+          cd node_modules
+          cp -r /.pnpm ./
 
       # - name: Pre-deployment Log
       #   run: |
