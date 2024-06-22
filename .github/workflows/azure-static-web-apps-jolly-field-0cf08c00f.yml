@@ -20,6 +20,7 @@ jobs:
           submodules: true
       - run: |
           npm install turbo -g
+          npm install pnpm -g
           pnpm i
           pnpm turbo run build
           cp -r tms-next-abp/apps/abp/.next/standalone/apps/web/. tms-next-abp/apps/abp/.next/standalone
