@@ -22,7 +22,7 @@ jobs:
           npm install turbo -g
           pnpm i
           pnpm turbo run build
-          cp -r apps/abp/.next/standalone/apps/web/. apps/abp/.next/standalone
+          cp -r tms-next-abp/apps/abp/.next/standalone/apps/web/. tms-next-abp/apps/abp/.next/standalone
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
@@ -31,7 +31,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
           skip_app_build: true
-          app_location: "apps/abp"
+          app_location: "tms-next-abp/apps/abp"
           api_location: ""
       # - name: Build And Deploy1
       #   id: builddeploy1
