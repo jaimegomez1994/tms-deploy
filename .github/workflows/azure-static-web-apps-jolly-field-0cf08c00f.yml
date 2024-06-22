@@ -24,6 +24,8 @@ jobs:
           npm install -g pnpm
           pnpm i
           pnpm turbo run build
+          echo "jaime"
+          ls -R
           cp -r .next/standalone/apps/abp/. .next/standalone
       - name: Build And Deploy
         id: builddeploy
