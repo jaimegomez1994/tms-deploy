@@ -35,7 +35,7 @@ jobs:
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
           app_location: "tms-next-abp" # App source code path
           api_location: "" # Api source code path - optional
-          output_location: "apps/abp/.next/standalone/server/pages/index.js" # Built app content directory - optional
+          output_location: "apps/abp" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
 
       # - name: Build And Deploy
