@@ -52,13 +52,15 @@ jobs:
             mkdir -p node_modules
           fi
           echo "Copying .pnpm and node_modules to standalone"
-          pwd
-          echo "ls"
-          ls
-          cd node_modules
-          ls -la
-          echo "ls"
-          cp -r /.pnpm ./
+          cp -r ../../../node_modules/.pnpm ./
+          cp -r ../../../node_modules/* ./node_modules/
+
+      - name: Verify node_modules in standalone
+        run: |
+          echo "Verifying node_modules in .next/standalone"
+          cd tms-next-abp/apps/abp/.next/standalone
+          ls -la node_modules
+          ls -la .pnpm
 
       # - name: Pre-deployment Log
       #   run: |
@@ -86,18 +88,6 @@ jobs:
           else
             echo "staticwebapp.config.json not found!"
           fi
-
-      - name: Verify node_modules in standalone
-        run: |
-          echo "Verifying node_modules in .next/standalone"
-          cd tms-next-abp/apps/abp/.next/standalone
-          if [ ! -d "node_modules" ]; then
-            echo "node_modules not found, installing dependencies"
-            pnpm install --prod
-          else
-            echo "node_modules exists"
-          fi
-          ls -la node_modules
 
       - name: Build And Deploy
         id: builddeploy
