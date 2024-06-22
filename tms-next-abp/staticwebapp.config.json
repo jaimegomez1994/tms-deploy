@@ -1,6 +1,4 @@
 {
-    "routes": [],
-    "navigationFallback": {},
     "apiRuntime": "node20",
     "platform": {
         "apiRuntime": "node:20"
