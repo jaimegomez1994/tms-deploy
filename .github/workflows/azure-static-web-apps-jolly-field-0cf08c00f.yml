@@ -54,7 +54,7 @@ jobs:
           ls -la
           cd standalone
           ls -la
-          cd ../../../node_modules
+          cd ../../node_modules
           ls -la
 
       - name: Ensure node_modules in standalone
@@ -66,8 +66,8 @@ jobs:
             mkdir -p node_modules
           fi
           echo "Copying .pnpm and node_modules to standalone"
-          cp -r ../../../node_modules/.pnpm ./
-          cp -r ../../../node_modules/* ./node_modules/
+          cp -r ../../node_modules/ ./
+          cp -r ../../node_modules/* ./node_modules/
 
       # - name: Pre-deployment Log
       #   run: |
