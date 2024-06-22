@@ -24,7 +24,7 @@ jobs:
           npm install -g pnpm
           pnpm i
           pnpm turbo run build
-          cp -r tms-next-abp/apps/abp/.next/standalone/apps/web/. tms-next-abp/apps/abp/.next/standalone
+          cp -r tms-next-abp/apps/abp/.next/standalone/apps/abp/. tms-next-abp/apps/abp/.next/standalone
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
