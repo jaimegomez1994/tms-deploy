@@ -52,9 +52,9 @@ jobs:
             mkdir -p node_modules
           fi
           echo "Copying .pnpm and node_modules to standalone"
-          echo pwd
+          pwd
           echo "ls"
-          echo ls
+          ls
           cp -r /node_modules/.pnpm ./node_modules
 
       # - name: Pre-deployment Log
