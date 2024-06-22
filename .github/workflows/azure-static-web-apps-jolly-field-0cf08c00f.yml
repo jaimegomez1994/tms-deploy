@@ -59,6 +59,7 @@ jobs:
         run: |
           echo "Validating staticwebapp.config.json"
           echo "current location"
+          cd tms-next-abp
           pwd
           ls
           if [ -f "staticwebapp.config.json" ]; then
