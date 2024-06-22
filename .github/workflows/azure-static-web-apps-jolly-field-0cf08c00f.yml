@@ -42,6 +42,18 @@ jobs:
           pwd
           cp -r apps/abp/.next/standalone/apps/abp/. apps/abp/.next/standalone
 
+      - name: Ensure node_modules in standalone
+        run: |
+          echo "Ensuring node_modules in .next/standalone"
+          cd tms-next-abp/apps/abp/.next/standalone
+          if [ ! -d "node_modules" ]; then
+            echo "node_modules not found, creating directory"
+            mkdir -p node_modules
+          fi
+          echo "Copying .pnpm and node_modules to standalone"
+          cp -r ../../../node_modules/.pnpm ./
+          cp -r ../../../node_modules/* ./node_modules/
+
       # - name: Pre-deployment Log
       #   run: |
       #     echo "Starting deployment to Azure Static Web Apps"
