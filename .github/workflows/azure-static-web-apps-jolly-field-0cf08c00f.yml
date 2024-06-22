@@ -37,6 +37,15 @@ jobs:
           pnpm turbo run build
           cp -r apps/abp/.next/standalone/apps/abp/. apps/abp/.next/standalone
 
+      - name: Measure folder sizes
+        run: |
+          echo "Measuring folder sizes"
+          du -sh tms-next-abp/apps/abp/.next
+          du -sh tms-next-abp/apps/abp/.next/standalone
+          du -sh tms-next-abp/apps/abp/.next/static
+          du -sh tms-next-abp/apps/abp/.next/server
+          du -sh tms-next-abp/node_modules
+
       - name: Ensure node_modules in standalone
         run: |
           echo "Ensuring node_modules in .next/standalone"
@@ -47,6 +56,8 @@ jobs:
           echo "Zipping build artifacts"
           cd tms-next-abp/apps/abp/.next
           zip -r standalone.zip standalone
+          zip -r static.zip static
+          zip -r server.zip server
 
       - name: Deploy to Azure Static Web Apps
         id: builddeploy
@@ -61,9 +72,11 @@ jobs:
 
       - name: Unzip build artifacts
         run: |
-          echo "Unzipping build artifacts"
+          echo "Zipping build artifacts"
           cd tms-next-abp/apps/abp/.next
-          unzip standalone.zip
+          zip -r standalone.zip standalone -x standalone/cache\*
+          zip -r static.zip static
+          zip -r server.zip server
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
