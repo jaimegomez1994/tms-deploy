@@ -60,14 +60,7 @@ jobs:
       - name: Ensure node_modules in standalone
         run: |
           echo "Ensuring node_modules in .next/standalone"
-          cd tms-next-abp/apps/abp/.next/standalone
-          if [ ! -d "node_modules" ]; then
-            echo "node_modules not found, creating directory"
-            mkdir -p node_modules
-          fi
-          echo "Copying .pnpm and node_modules to standalone"
-          cp -r ../../node_modules/ ./
-          cp -r ../../node_modules/* ./node_modules/
+          cp -r tms-next-abp/apps/abp/.next/standalone/node_modules/.pnpm tms-next-abp/apps/abp/node_modules
 
       # - name: Pre-deployment Log
       #   run: |
