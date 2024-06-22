@@ -19,15 +19,19 @@ jobs:
         with:
           submodules: true
       - run: |
-          echo "jaime1"
-          ls -R
+          echo "jaime1 pwd"
+          pwd
+          echo "jaime1 ls"
+          ls
           cd tms-next-abp
           npm install turbo -g
           npm install -g pnpm
           pnpm i
           pnpm turbo run build
-          echo "jaime"
-          ls -R
+          echo "jaime pwd"
+          pwd
+          echo "jaime ls"
+          ls
           cp -r .next/standalone/apps/abp/. .next/standalone
       - name: Build And Deploy
         id: builddeploy
