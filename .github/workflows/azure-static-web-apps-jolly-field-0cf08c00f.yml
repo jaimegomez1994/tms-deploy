@@ -56,7 +56,7 @@ jobs:
           echo "ls"
           ls
           cd node_modules
-          ls -la
+          ls
           cp -r /.pnpm ./
 
       # - name: Pre-deployment Log
