@@ -19,6 +19,7 @@ jobs:
         with:
           submodules: true
       - run: |
+          cd tms-next-abp
           npm install turbo -g
           npm install -g pnpm
           pnpm i
