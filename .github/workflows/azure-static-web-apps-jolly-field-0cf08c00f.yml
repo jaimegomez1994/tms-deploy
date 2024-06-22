@@ -42,7 +42,13 @@ jobs:
           echo "Ensuring node_modules in .next/standalone"
           cp -r tms-next-abp/apps/abp/.next/standalone/node_modules/.pnpm tms-next-abp/apps/abp/node_modules
 
-      - name: Build And Deploy
+      - name: Zip build artifacts
+        run: |
+          echo "Zipping build artifacts"
+          cd tms-next-abp/apps/abp/.next
+          zip -r standalone.zip standalone
+
+      - name: Deploy to Azure Static Web Apps
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
@@ -52,6 +58,12 @@ jobs:
           skip_app_build: true
           app_location: "tms-next-abp/apps/abp"
           api_location: ""
+
+      - name: Unzip build artifacts
+        run: |
+          echo "Unzipping build artifacts"
+          cd tms-next-abp/apps/abp/.next
+          unzip standalone.zip
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
