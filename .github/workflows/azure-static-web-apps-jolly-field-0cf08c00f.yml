@@ -42,18 +42,18 @@ jobs:
           pwd
           cp -r apps/abp/.next/standalone/apps/abp/. apps/abp/.next/standalone
 
-      - name: Pre-deployment Log
-        run: |
-          echo "Starting deployment to Azure Static Web Apps"
-          echo "Application location: tms-next-abp/apps/abp"
-          cd tms-next-abp/apps/abp/.next/standalone
-          ls
-          if [ -d "node_modules" ]; then
-          echo "node_modules folder exists"
-          ls -la node_modules
-          else
-            echo "node_modules folder does not exist"
-          fi
+      # - name: Pre-deployment Log
+      #   run: |
+      #     echo "Starting deployment to Azure Static Web Apps"
+      #     echo "Application location: tms-next-abp/apps/abp"
+      #     cd tms-next-abp/apps/abp/.next/standalone
+      #     ls
+      #     if [ -d "node_modules" ]; then
+      #     echo "node_modules folder exists"
+      #     ls -la node_modules
+      #     else
+      #       echo "node_modules folder does not exist"
+      #     fi
 
       - name: Validate staticwebapp.config.json
         run: |
@@ -68,6 +68,18 @@ jobs:
           else
             echo "staticwebapp.config.json not found!"
           fi
+
+      - name: Verify node_modules in standalone
+        run: |
+          echo "Verifying node_modules in .next/standalone"
+          cd tms-next-abp/apps/abp/.next/standalone
+          if [ ! -d "node_modules" ]; then
+            echo "node_modules not found, installing dependencies"
+            pnpm install --prod
+          else
+            echo "node_modules exists"
+          fi
+          ls -la node_modules
 
       - name: Build And Deploy
         id: builddeploy
