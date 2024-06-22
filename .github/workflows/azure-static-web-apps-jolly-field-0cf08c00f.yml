@@ -30,9 +30,11 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
+        working-directory: ./tms-next-abp
 
       - name: Build project
         run: pnpm turbo run build
+        working-directory: ./tms-next-abp
 
       - name: Build And Deploy
         id: builddeploy
