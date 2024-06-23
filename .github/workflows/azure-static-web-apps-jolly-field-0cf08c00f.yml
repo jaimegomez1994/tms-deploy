@@ -64,7 +64,7 @@ jobs:
           cp -r tms-next-abp/apps/abp/.next/standalone/node_modules/.pnpm tms-next-abp/apps/abp/node_modules
 
       - name: Remove unnecessary node_modules
-        run: cd tms-next-abp && npm prune --production
+        run: cd tms-next-abp && pnpm prune --production
 
       - name: Zip build artifacts
         run: |
