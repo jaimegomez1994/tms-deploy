@@ -37,6 +37,18 @@ jobs:
           pnpm turbo run build
           cp -r apps/abp/.next/standalone/apps/abp/. apps/abp/.next/standalone
 
+      - name: Remove .next/cache folder
+        run: rm -rf tms-next-abp/apps/abp/.next/cache
+
+      - name: Measure folder sizes after prune
+        run: |
+          echo "Measuring folder sizes"
+          du -sh tms-next-abp/apps/abp/.next
+          du -sh tms-next-abp/apps/abp/.next/standalone
+          du -sh tms-next-abp/apps/abp/.next/static
+          du -sh tms-next-abp/apps/abp/.next/server
+          du -sh tms-next-abp/node_modules
+
       - name: Measure folder sizes
         run: |
           echo "Measuring folder sizes"
@@ -51,13 +63,13 @@ jobs:
           echo "Ensuring node_modules in .next/standalone"
           cp -r tms-next-abp/apps/abp/.next/standalone/node_modules/.pnpm tms-next-abp/apps/abp/node_modules
 
+      - name: Remove unnecessary node_modules
+        run: cd tms-next-abp && npm prune --production
+
       - name: Zip build artifacts
         run: |
-          echo "Zipping build artifacts"
-          cd tms-next-abp/apps/abp/.next
-          zip -r standalone.zip standalone
-          zip -r static.zip static
-          zip -r server.zip server
+          cd tms-next-abp/apps/abp
+          zip -r abp-app.zip .next node_modules public static
 
       - name: Deploy to Azure Static Web Apps
         id: builddeploy
@@ -70,13 +82,10 @@ jobs:
           app_location: "tms-next-abp/apps/abp"
           api_location: ""
 
-      - name: Unzip build artifacts
+      - name: Unzip and prepare for deployment
         run: |
-          echo "Zipping build artifacts"
-          cd tms-next-abp/apps/abp/.next
-          zip -r standalone.zip standalone -x standalone/cache\*
-          zip -r static.zip static
-          zip -r server.zip server
+          cd tms-next-abp/apps/abp
+          unzip abp-app.zip -d deploy
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
