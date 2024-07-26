@@ -71,6 +71,17 @@ jobs:
           cd tms-next-abp/apps/abp
           zip -r abp-app.zip .next node_modules public static
 
+      - name: Unzip and prepare for deployment
+        run: |
+          cd tms-next-abp/apps/abp
+          unzip abp-app.zip -d deploy
+
+      - name: List files below tms-next-abp/apps/abp
+        run: find tms-next-abp/apps/abp -type f
+
+      - name: List files below tms-next-abp/apps/abp/.next
+        run: find tms-next-abp/apps/abp/.next -type f
+
       - name: Deploy to Azure Static Web Apps
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
@@ -81,11 +92,6 @@ jobs:
           skip_app_build: true
           app_location: "tms-next-abp/apps/abp"
           api_location: ""
-
-      - name: Unzip and prepare for deployment
-        run: |
-          cd tms-next-abp/apps/abp
-          unzip abp-app.zip -d deploy
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
