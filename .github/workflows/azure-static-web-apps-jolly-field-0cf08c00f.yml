@@ -37,44 +37,44 @@ jobs:
           pnpm turbo run build
           cp -r apps/abp/.next/standalone/apps/abp/. apps/abp/.next/standalone
 
-      - name: Remove .next/cache folder
-        run: rm -rf tms-next-abp/apps/abp/.next/cache
+      # - name: Remove .next/cache folder
+      #   run: rm -rf tms-next-abp/apps/abp/.next/cache
 
-      - name: Measure folder sizes after prune
-        run: |
-          echo "Measuring folder sizes"
-          du -sh tms-next-abp/apps/abp/.next
-          du -sh tms-next-abp/apps/abp/.next/standalone
-          du -sh tms-next-abp/apps/abp/.next/static
-          du -sh tms-next-abp/apps/abp/.next/server
-          du -sh tms-next-abp/node_modules
+      # - name: Measure folder sizes after prune
+      #   run: |
+      #     echo "Measuring folder sizes"
+      #     du -sh tms-next-abp/apps/abp/.next
+      #     du -sh tms-next-abp/apps/abp/.next/standalone
+      #     du -sh tms-next-abp/apps/abp/.next/static
+      #     du -sh tms-next-abp/apps/abp/.next/server
+      #     du -sh tms-next-abp/node_modules
 
-      - name: Measure folder sizes
-        run: |
-          echo "Measuring folder sizes"
-          du -sh tms-next-abp/apps/abp/.next
-          du -sh tms-next-abp/apps/abp/.next/standalone
-          du -sh tms-next-abp/apps/abp/.next/static
-          du -sh tms-next-abp/apps/abp/.next/server
-          du -sh tms-next-abp/node_modules
+      # - name: Measure folder sizes
+      #   run: |
+      #     echo "Measuring folder sizes"
+      #     du -sh tms-next-abp/apps/abp/.next
+      #     du -sh tms-next-abp/apps/abp/.next/standalone
+      #     du -sh tms-next-abp/apps/abp/.next/static
+      #     du -sh tms-next-abp/apps/abp/.next/server
+      #     du -sh tms-next-abp/node_modules
 
-      - name: Ensure node_modules in standalone
-        run: |
-          echo "Ensuring node_modules in .next/standalone"
-          cp -r tms-next-abp/apps/abp/.next/standalone/node_modules/.pnpm tms-next-abp/apps/abp/node_modules
+      # - name: Ensure node_modules in standalone
+      #   run: |
+      #     echo "Ensuring node_modules in .next/standalone"
+      #     cp -r tms-next-abp/apps/abp/.next/standalone/node_modules/.pnpm tms-next-abp/apps/abp/node_modules
 
-      - name: Remove unnecessary node_modules
-        run: cd tms-next-abp && pnpm prune --production
+      # - name: Remove unnecessary node_modules
+      #   run: cd tms-next-abp && pnpm prune --production
 
-      - name: Zip build artifacts
-        run: |
-          cd tms-next-abp/apps/abp
-          zip -r abp-app.zip .next node_modules public static
+      # - name: Zip build artifacts
+      #   run: |
+      #     cd tms-next-abp/apps/abp
+      #     zip -r abp-app.zip .next node_modules public static
 
-      - name: Unzip and prepare for deployment
-        run: |
-          cd tms-next-abp/apps/abp
-          unzip abp-app.zip -d deploy
+      # - name: Unzip and prepare for deployment
+      #   run: |
+      #     cd tms-next-abp/apps/abp
+      #     unzip abp-app.zip -d deploy
 
       - name: List files below tms-next-abp/apps/abp/.next
         run: find tms-next-abp/apps/abp/.next -type f
