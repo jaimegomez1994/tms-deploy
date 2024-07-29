@@ -35,7 +35,6 @@ jobs:
           npm install -g pnpm
           pnpm i
           pnpm turbo run build
-          cp -r apps/abp/.next/standalone/apps/abp/. apps/abp/.next/standalone
 
       # - name: Remove .next/cache folder
       #   run: rm -rf tms-next-abp/apps/abp/.next/cache
@@ -76,11 +75,11 @@ jobs:
       #     cd tms-next-abp/apps/abp
       #     unzip abp-app.zip -d deploy
 
-      - name: List files below tms-next-abp/apps/abp/node_modules/next
-        run: find tms-next-abp/apps/abp/node_modules/next -type f
+      - name: List files below tms-next-abp/apps/abp/node_modules/next/dist
+        run: find tms-next-abp/apps/abp/node_modules/next/dist -type f
 
-      - name: List files below tms-next-abp/apps/abp/.next
-        run: find tms-next-abp/apps/abp/.next -type f
+      # - name: List files below tms-next-abp/apps/abp/.next
+      #   run: find tms-next-abp/apps/abp/.next -type f
 
       - name: Deploy to Azure Static Web Apps
         id: builddeploy
