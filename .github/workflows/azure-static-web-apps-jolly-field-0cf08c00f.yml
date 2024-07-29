@@ -76,9 +76,6 @@ jobs:
           cd tms-next-abp/apps/abp
           unzip abp-app.zip -d deploy
 
-      - name: List files below tms-next-abp/apps/abp
-        run: find tms-next-abp/apps/abp -type f
-
       - name: List files below tms-next-abp/apps/abp/.next
         run: find tms-next-abp/apps/abp/.next -type f
 
